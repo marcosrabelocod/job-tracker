@@ -1,1 +1,9 @@
-{"work":"Desenvolvedor","level":"Junior","Stacks":["Suporte","Next/TypeScript","Java/SpringBoot"]}
+{
+  "work": "Desenvolvedor",
+  "level": "Junior",
+  "Stacks": [
+    "Java/SpringBoot",
+    "Next/TypeScript",
+    "Suporte"
+  ]
+}
