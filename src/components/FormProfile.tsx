@@ -3,6 +3,8 @@ import { useState } from "react"
 import { User } from "@/src/type/Usuario"
 import StackSelection from "@/src/components/formImputs/StackSelection"
 import { saveUser } from "@/src/lib/userService"
+import Level from "@/src/components/formImputs/Level"
+import Work from "@/src/components/formImputs/Work"
 
 interface DataAtions{
     user: User
@@ -37,10 +39,18 @@ export default function FormProfile({user}: DataAtions){
                 <h1 className="text-3x1 fontbold text-slate-800">
                     Profile
                 </h1>
-                <hr />
+                <hr className="m-4" />
                 <form onSubmit={formAction}>
                     <StackSelection stacks={staks} handleStackAdd={handleStackAdd} handleStackDrop={handleStackDrop}/>
-                    <input type="submit" value="Salvar" />
+                    
+                    <hr className="m-4" />
+                    <Level/>
+
+                    <hr className="m-4" />
+                    <Work/>
+
+                    <hr className="m-4"/>
+                    <input type="submit" value="Salvar" className="text-white bg-slate-800 box-border border border-transparent hover:bg-slate-900 focus:ring-4 focus:ring-slate-300 shadow-sm font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none transition-colors"/>
                 </form>
                 
             </main>

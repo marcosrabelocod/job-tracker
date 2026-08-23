@@ -12,7 +12,9 @@ export default function StackSelection({stacks, handleStackDrop, handleStackAdd}
     return(
         
         <div className="relative w-full">
-                    <h2>Stacks</h2>
+                    <label className="block mb-3 text-sm font-semibold text-slate-800">
+                        Stacks
+                    </label>
                     {stacks.map(stack => (
                         <span key={stack} className="inline-flex items-center bg-transparent border border-slate-200 rounded-md shadow-sm overflow-hidden transition duration-300 ease hover:border-slate-300 hover:shadow-md text-slate-700 text-sm mx-2 my-1">
         
