@@ -8,6 +8,37 @@ interface StackAction{
 }
 export default function StackSelection({stacks, handleStackDrop, handleStackAdd}:StackAction){
     const [addStack, setAddStack] = useState('')
+    const [erro, setErro] = useState('')
+
+    const validaStack = (stack:string) =>{
+        const stackNormalizada = stack.trim()
+
+        if (stack === ''){
+            setErro('O campo não pode ser validado, pois está vazio')
+            return false
+        }
+        if (stack.length > 255){
+            setErro('O campo excedeu o limite de tamnho')
+            return false
+        }
+        if (stacks.length > 15 ){
+            setErro('Limite de Stacks excedido apague uma para poder adicionar mais')
+            return false
+        }
+        if (stacks.length < 1){
+            setErro('deve haver um minimo de uma stack selecionada')
+            return false
+        }
+
+        const jaExiste = stacks.some(s => s.toLowerCase() === stackNormalizada.toLocaleLowerCase())
+        if (jaExiste){
+        setErro('essa stack já foi adicionada')
+        return false
+        }
+
+        setErro('')
+        return true
+    }
 
     return(
         
@@ -42,21 +73,26 @@ export default function StackSelection({stacks, handleStackDrop, handleStackAdd}
                                 value={addStack} onChange={(e) => setAddStack(e.target.value)}
                                 //all garantindo que ao apertar enter ele adiciona a coluna
                                 onKeyDown={(e) => {
-                                    if (e.key === 'Enter' && handleStackAdd && addStack.trim() !== '') {
-                                        e.preventDefault(); // Evita que o Enter recarregue a página se estiver num form
-                                        handleStackAdd(addStack);
-                                        setAddStack('');
+                                    if (e.key === 'Enter' ){
+                                        e.preventDefault
+                                        if (handleStackAdd && validaStack(addStack)){
+                                                handleStackAdd(addStack.trim())
+                                                setErro('')
+                                                setAddStack('')
+                                        }
                                     }
-                                }}
+                                    }
+                                }
                             />
 
                             <button
                             className="absolute right-1 top-1 rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button"
                             onClick={() => {
-                                if (handleStackAdd && addStack.trim() !== '') {
-                                handleStackAdd(addStack)
-                                setAddStack('')
+                                if (handleStackAdd && validaStack(addStack)){
+                                    handleStackAdd(addStack.trim())
+                                    setErro('')
+                                    setAddStack('')
                                 }
                             }}
                             >
@@ -64,6 +100,7 @@ export default function StackSelection({stacks, handleStackDrop, handleStackAdd}
                             </button>
                         </div>
                     </div>
+                    <span className="text-red-500">{erro}</span>
                 </div>
     )
 }

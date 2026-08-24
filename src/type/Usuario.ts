@@ -1,6 +1,6 @@
 export interface User{
     work: string
-    level:'estagio' | 'Junior' | 'Pleno' | 'Senior'
+    level:'Estagio' | 'Junior' | 'Pleno' | 'Senior'
     Stacks:string[]
 }
 
