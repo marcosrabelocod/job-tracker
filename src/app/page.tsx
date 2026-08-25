@@ -7,7 +7,7 @@ export default function Home() {
   // Primeiro mapeamos todas as abilidades do usuario
   //essa separação sera util para categorizar cada vaga 
   //O indice dos nomes sera usado para organizar as listas de vagas
-  const divisions = UserInstace.Stacks.map(stack =>{
+  const divisions = UserInstace.stacks.map(stack =>{
 
     //apos isso separamos cada vaga pela abilidade que ela corresponde 
     return MockVagas.filter(vaga => vaga.area === stack)
@@ -29,7 +29,7 @@ export default function Home() {
           <div key={index} className="bg-slate-200/50 p-4 rounded-xl border border-slate-300 shadow-sm">
             <h2 className="font-bold text-slate-700 mb-4 border-b border-slate-300 pb-2">
               {//aqui nos aproveitamos a compatibilidade de index das listas
-              UserInstace.Stacks[index]}
+              UserInstace.stacks[index]}
             </h2>
             <div className="flex flex-col gap-4">
               {area.map(vaga =>(

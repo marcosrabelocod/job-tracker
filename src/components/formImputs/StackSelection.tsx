@@ -46,7 +46,7 @@ export default function StackSelection({stacks, handleStackDrop, handleStackAdd}
                     <label className="block mb-3 text-sm font-semibold text-slate-800">
                         Stacks
                     </label>
-                    {stacks.map(stack => (
+                    { stacks.map(stack => (
                         <span key={stack} className="inline-flex items-center bg-transparent border border-slate-200 rounded-md shadow-sm overflow-hidden transition duration-300 ease hover:border-slate-300 hover:shadow-md text-slate-700 text-sm mx-2 my-1">
         
                             {/* O texto da coluna fica aqui */}
