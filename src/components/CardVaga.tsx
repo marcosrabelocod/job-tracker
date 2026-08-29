@@ -1,6 +1,5 @@
-import type {Vaga} from "@/src/type/Vaga";
+import type {Vaga} from "@/src/type/Vagas";
 import Link from 'next/link'
-
 //essa interface deixa muito mais facil desencapsular o parametro vaga
 interface CardVagasProps{
     vaga:Vaga

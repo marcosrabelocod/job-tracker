@@ -1,10 +1,11 @@
 'use client'
 import { useState } from "react"
-import { User } from "@/src/type/Usuario"
+import { User, UF } from "@/src/type/Usuario"
 import StackSelection from "@/src/components/formImputs/StackSelection"
 import { saveUser } from "@/src/lib/userService"
 import Level from "@/src/components/formImputs/Level"
 import Work from "@/src/components/formImputs/Work"
+import UfSelection from "./formImputs/UfSelection"
 
 interface DataAtions{
     user: User
@@ -15,6 +16,7 @@ export default function FormProfile({user}: DataAtions){
     const [staks, setStaks] = useState(user.Stacks)
     const [nivel, setNivel] = useState(user.level)
     const [work, setWork] = useState(user.work)
+    const [uf, setUf] = useState(user.UF)
     const [workErro, setWorkErro] = useState('')
 
     const handleStackDrop =(dropstack:string) => {
@@ -32,6 +34,9 @@ export default function FormProfile({user}: DataAtions){
     }
     const handleWork = (work: string) => {
         setWork(work)
+    }
+    const handleUf = (estado: UF) => {
+        setUf(estado)
     }
 
 
@@ -55,7 +60,7 @@ export default function FormProfile({user}: DataAtions){
     const formAction = (e: React.SubmitEvent) =>{
         e.preventDefault()
         
-        const userAtualizado: User = {work: work, level: nivel, Stacks: staks}
+        const userAtualizado: User = {work: work, level: nivel, Stacks: staks, UF: uf}
         if (workValidation(work)){
             saveUser(userAtualizado)
         }
@@ -72,14 +77,18 @@ export default function FormProfile({user}: DataAtions){
                     <StackSelection stacks={staks} handleStackAdd={handleStackAdd} handleStackDrop={handleStackDrop}/>
                     
                     <hr className="m-4" />
-                    <Level nivel={user.level} handleNivel={handleNivel}/>
+                    <Level nivel={nivel} handleNivel={handleNivel}/>
 
                     <hr className="m-4" />
-                    <Work work={user.work} handleWork={handleWork}/>
+                    <Work work={work} handleWork={handleWork}/>
                     <span className="text-red-500">{workErro}</span>
 
                     <hr className="m-4"/>
+                    {<UfSelection UF={uf} handleUf={handleUf}/>
+}
+                    < hr className="m-4"/>
                     <input type="submit" value="Salvar" className="text-white bg-slate-800 box-border border border-transparent hover:bg-slate-900 focus:ring-4 focus:ring-slate-300 shadow-sm font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none transition-colors"/>
+
                 </form>
                 
             </main>

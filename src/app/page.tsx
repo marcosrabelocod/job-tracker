@@ -1,4 +1,4 @@
-import { MockVagas } from "@/src/type/Vaga"; 
+import { MockVagas } from "@/src/type/Vagas"; 
 import CardVaga from "@/src/components/CardVaga";
 import { UserInstace } from "../type/Usuario";
 
